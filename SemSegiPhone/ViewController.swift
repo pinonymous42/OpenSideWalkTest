@@ -205,9 +205,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         //pass through the filter that converts grayscale image to different shades of red
         self.masker.inputGrayImage = segMaskGray
         
-//        If running on iPhone, it has to rotate.
-//        self.segView.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
-        
         // add to the image view
         self.segView.image = UIImage(ciImage: self.masker.outputImage!, scale: 1.0, orientation: .right)
     }
@@ -328,18 +325,18 @@ class ColorMasker: CIFilter
         "}}"
     )
     
-//    override var attributes: [String : Any]
-//    {
-//        return [
-//            kCIAttributeFilterDisplayName: "Color masker",
-//            
-//            "inputGrayImage": [kCIAttributeIdentity: 0,
-//                              kCIAttributeClass: "CIImage",
-//                              kCIAttributeDisplayName: "Grayscale Image",
-//                              kCIAttributeType: kCIAttributeTypeImage
-//            ]
-//        ]
-//    }
+    override var attributes: [String : Any]
+    {
+        return [
+            kCIAttributeFilterDisplayName: "Color masker",
+            
+            "inputGrayImage": [kCIAttributeIdentity: 0,
+                              kCIAttributeClass: "CIImage",
+                              kCIAttributeDisplayName: "Grayscale Image",
+                              kCIAttributeType: kCIAttributeTypeImage
+            ]
+        ]
+    }
     
     override var outputImage: CIImage!
     {
